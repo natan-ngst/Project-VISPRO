@@ -25,7 +25,7 @@ namespace Project__VISPRO
         private void btnHome_Click(object sender, EventArgs e)
         {
             FrmMain frmMain = new FrmMain();
-            frmMain.ShowDialog();
+            frmMain.Show();
             this.Hide();
         }
 

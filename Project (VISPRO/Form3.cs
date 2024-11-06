@@ -7,13 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace Project__VISPRO
 {
     public partial class Form3 : Form
     {
+        private MySqlConnection koneksi;
+        private MySqlDataAdapter adapter;
+        private MySqlCommand perintah;
+
+        private DataSet ds = new DataSet();
+        private string alamat, query;
         public Form3()
         {
+            alamat = "server=localhost; database=db_asrama; username=root; password=;";
+            koneksi = new MySqlConnection(alamat);
             InitializeComponent();
         }
 
@@ -55,6 +65,27 @@ namespace Project__VISPRO
             FrmKamar frmKamar = new FrmKamar();
             frmKamar.Show();
             this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

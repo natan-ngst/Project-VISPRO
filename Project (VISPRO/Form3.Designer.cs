@@ -29,118 +29,105 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtIDMahasiswa = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtIDPenghuni = new System.Windows.Forms.TextBox();
+            this.txtIDKamar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnBooking = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDorm = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.txtTingkat = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNamamahasiswa = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox4
+            // txtIDMahasiswa
             // 
-            this.textBox4.Location = new System.Drawing.Point(493, 253);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(136, 26);
-            this.textBox4.TabIndex = 24;
+            this.txtIDMahasiswa.Location = new System.Drawing.Point(493, 253);
+            this.txtIDMahasiswa.Name = "txtIDMahasiswa";
+            this.txtIDMahasiswa.Size = new System.Drawing.Size(136, 26);
+            this.txtIDMahasiswa.TabIndex = 24;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(299, 311);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 20);
+            this.label5.Size = new System.Drawing.Size(61, 20);
             this.label5.TabIndex = 22;
-            this.label5.Text = "Level";
+            this.label5.Text = "Tingkat";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(299, 259);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 20);
+            this.label4.Size = new System.Drawing.Size(109, 20);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Nama Pengguna";
+            this.label4.Text = "ID Mahasiswa";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(299, 213);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.Size = new System.Drawing.Size(97, 20);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Username";
+            this.label2.Text = "ID Penghuni";
             // 
-            // comboBox1
+            // txtIDPenghuni
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(493, 303);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(136, 28);
-            this.comboBox1.TabIndex = 18;
+            this.txtIDPenghuni.Location = new System.Drawing.Point(493, 207);
+            this.txtIDPenghuni.Name = "txtIDPenghuni";
+            this.txtIDPenghuni.Size = new System.Drawing.Size(136, 26);
+            this.txtIDPenghuni.TabIndex = 17;
             // 
-            // textBox2
+            // txtIDKamar
             // 
-            this.textBox2.Location = new System.Drawing.Point(493, 207);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 26);
-            this.textBox2.TabIndex = 17;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(493, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 26);
-            this.textBox1.TabIndex = 16;
+            this.txtIDKamar.Location = new System.Drawing.Point(493, 166);
+            this.txtIDKamar.Name = "txtIDKamar";
+            this.txtIDKamar.Size = new System.Drawing.Size(136, 26);
+            this.txtIDKamar.TabIndex = 16;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(299, 166);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 20);
+            this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 15;
-            this.label1.Text = "ID Pengguna";
+            this.label1.Text = "ID Kamar";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button3
+            // btnDelete
             // 
-            this.button3.Location = new System.Drawing.Point(475, 352);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 32);
-            this.button3.TabIndex = 27;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnDelete.Location = new System.Drawing.Point(827, 253);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(81, 32);
+            this.btnDelete.TabIndex = 27;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // btnUpdate
             // 
-            this.button2.Location = new System.Drawing.Point(383, 352);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 32);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(296, 352);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 32);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(967, 160);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(81, 32);
+            this.btnUpdate.TabIndex = 26;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnBooking
             // 
@@ -186,6 +173,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 43;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnDorm
             // 
@@ -211,30 +199,65 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // txtTingkat
+            // 
+            this.txtTingkat.Location = new System.Drawing.Point(493, 305);
+            this.txtTingkat.Name = "txtTingkat";
+            this.txtTingkat.Size = new System.Drawing.Size(136, 26);
+            this.txtTingkat.TabIndex = 55;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(299, 361);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 20);
+            this.label3.TabIndex = 56;
+            this.label3.Text = "Nama Penghuni";
+            // 
+            // txtNamamahasiswa
+            // 
+            this.txtNamamahasiswa.Location = new System.Drawing.Point(493, 358);
+            this.txtNamamahasiswa.Name = "txtNamamahasiswa";
+            this.txtNamamahasiswa.Size = new System.Drawing.Size(136, 26);
+            this.txtNamamahasiswa.TabIndex = 57;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(967, 253);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(81, 32);
+            this.btnClear.TabIndex = 59;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1258, 664);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.txtNamamahasiswa);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtTingkat);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnDorm);
             this.Controls.Add(this.btnBooking);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnHome);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.txtIDMahasiswa);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtIDPenghuni);
+            this.Controls.Add(this.txtIDKamar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form3";
             this.Text = "Form3";
+            this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -243,22 +266,24 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtIDMahasiswa;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtIDPenghuni;
+        private System.Windows.Forms.TextBox txtIDKamar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnBooking;
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnDorm;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.TextBox txtTingkat;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNamamahasiswa;
+        private System.Windows.Forms.Button btnClear;
     }
 }
