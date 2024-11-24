@@ -33,9 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +76,36 @@
     </Compile>
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCR1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCR1.Designer.cs">
+      <DependentUpon>FormCR1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCR2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCR2.Designer.cs">
+      <DependentUpon>FormCR2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCR3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCR3.Designer.cs">
+      <DependentUpon>FormCR3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDorm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDorm.Designer.cs">
+      <DependentUpon>FormDorm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInfo.Designer.cs">
+      <DependentUpon>FormInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -83,8 +125,18 @@
     <Compile Include="FrmKamar.Designer.cs">
       <DependentUpon>FrmKamar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPengguna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPengguna.Designer.cs">
+      <DependentUpon>FrmPengguna.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +146,21 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCR1.resx">
+      <DependentUpon>FormCR1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCR2.resx">
+      <DependentUpon>FormCR2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCR3.resx">
+      <DependentUpon>FormCR3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDorm.resx">
+      <DependentUpon>FormDorm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInfo.resx">
+      <DependentUpon>FormInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmKamar.resx">
       <DependentUpon>FrmKamar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPengguna.resx">
+      <DependentUpon>FrmPengguna.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

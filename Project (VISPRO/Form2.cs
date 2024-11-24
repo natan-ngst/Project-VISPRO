@@ -36,7 +36,11 @@ namespace Project__VISPRO
             try
             {
                 koneksi.Open();
-                query = string.Format("select * from tbl_penghuni");
+
+                // Query dengan JOIN antara tabel tbl_penghuni dan tbl_kamar
+                query = @"SELECT p.id_penghuni, p.id_kamar, p.id_mahasiswa, p.tingkat, p.nama_penghuni, k.tipe_kamar 
+                  FROM tbl_penghuni p
+                  JOIN tbl_kamar k ON p.id_kamar = k.id_kamar";
                 perintah = new MySqlCommand(query, koneksi);
                 adapter = new MySqlDataAdapter(perintah);
                 perintah.ExecuteNonQuery();
@@ -54,25 +58,41 @@ namespace Project__VISPRO
                 dataGridView1.Columns[3].HeaderText = "Tingkat";
                 dataGridView1.Columns[4].Width = 120;
                 dataGridView1.Columns[4].HeaderText = "Nama Penghuni";
+                dataGridView1.Columns[5].Width = 120;
+                dataGridView1.Columns[5].HeaderText = "Tipe Kamar";
+
+                // Populate ComboBox with unique 'tipe_kamar' values
+                cmbType.Items.Clear(); // Assuming cmbType is the ComboBox
+                query = "SELECT DISTINCT tipe_kamar FROM tbl_kamar";
+                koneksi.Open();
+                perintah = new MySqlCommand(query, koneksi);
+                MySqlDataReader reader = perintah.ExecuteReader();
+                while (reader.Read())
+                {
+                    cmbType.Items.Add(reader["tipe_kamar"].ToString());
+                }
+                reader.Close();
+                koneksi.Close();
 
                 txtIDPenghuni.Clear();
                 txtIDKamar.Clear();
                 txtIDMahasiswa.Clear();
                 txtTingkat.Clear();
-                txtTingkat.Clear();
                 txtNamapenghuni.Clear();
+                cmbType.SelectedIndex = -1; // Clear ComboBox selection
+
                 btnUpdate.Enabled = true;
                 btnDelete.Enabled = true;
                 btnClear.Enabled = true;
                 btnSave.Enabled = true;
                 btnClear.Enabled = true;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
+
 
         private void btnBooking_Click(object sender, EventArgs e)
         {
@@ -88,8 +108,8 @@ namespace Project__VISPRO
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            form3.Show ();
+            FormInfo formInfo = new FormInfo();
+            formInfo.Show ();
             this.Hide();
         }
 
@@ -114,8 +134,8 @@ namespace Project__VISPRO
 
         private void btnDorm_Click(object sender, EventArgs e)
         {
-            FrmKamar frmKamar = new FrmKamar();
-            frmKamar.Show();
+            FormDorm formDorm = new FormDorm();
+            formDorm.Show();
             this.Hide();
         }
 
@@ -130,30 +150,41 @@ namespace Project__VISPRO
         {
             try
             {
+                // Memastikan semua field telah diisi
                 if (txtIDPenghuni.Text != "" && txtIDKamar.Text != "" && txtIDMahasiswa.Text != "" && txtTingkat.Text != "" && txtNamapenghuni.Text != "")
                 {
-
-                    query = string.Format("insert into tbl_penghuni  values ('{0}','{1}','{2}','{3}','{4}');", txtIDPenghuni.Text, txtIDKamar.Text, txtIDMahasiswa.Text, txtTingkat.Text, txtNamapenghuni.Text);
-
+                    // Query untuk menyimpan data ke tabel tbl_penghuni tanpa memasukkan tipe_kamar
+                    string query = @"INSERT INTO tbl_penghuni (id_penghuni, id_kamar, id_mahasiswa, tingkat, nama_penghuni) 
+                             VALUES (@id_penghuni, @id_kamar, @id_mahasiswa, @tingkat, @nama_penghuni);";
 
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
-                    adapter = new MySqlDataAdapter(perintah);
+
+                    // Menambahkan parameter untuk mencegah SQL Injection
+                    perintah.Parameters.AddWithValue("@id_penghuni", txtIDPenghuni.Text);
+                    perintah.Parameters.AddWithValue("@id_kamar", txtIDKamar.Text);
+                    perintah.Parameters.AddWithValue("@id_mahasiswa", txtIDMahasiswa.Text);
+                    perintah.Parameters.AddWithValue("@tingkat", txtTingkat.Text);
+                    perintah.Parameters.AddWithValue("@nama_penghuni", txtNamapenghuni.Text);
+
+                    // Eksekusi query insert
                     int res = perintah.ExecuteNonQuery();
                     koneksi.Close();
+
+                    // Mengecek hasil eksekusi query
                     if (res == 1)
                     {
-                        MessageBox.Show("Insert Data Suksess ...");
-                        Form2_Load(null, null);
+                        MessageBox.Show("Insert Data Sukses ...");
+                        Form2_Load(null, null);  // Memperbarui data setelah insert
                     }
                     else
                     {
-                        MessageBox.Show("Gagal insert Data . . . ");
+                        MessageBox.Show("Gagal Insert Data ...");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data Tidak lengkap !!");
+                    MessageBox.Show("Data Tidak Lengkap !!");
                 }
             }
             catch (Exception ex)
@@ -161,6 +192,7 @@ namespace Project__VISPRO
                 MessageBox.Show(ex.ToString());
             }
         }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -179,30 +211,47 @@ namespace Project__VISPRO
         {
             try
             {
+                // Memastikan semua field diisi sebelum melakukan update
                 if (txtIDPenghuni.Text != "" && txtIDKamar.Text != "" && txtIDMahasiswa.Text != "" && txtTingkat.Text != "" && txtNamapenghuni.Text != "")
                 {
-
-                    query = string.Format("update tbl_penghuni set id_kamar = '{0}', id_mahasiswa = '{1}', tingkat = '{2}', nama_penghuni = '{3}' where id_penghuni = '{4}'", txtIDKamar.Text, txtIDMahasiswa.Text, txtTingkat.Text, txtNamapenghuni.Text, txtIDPenghuni.Text);
-
+                    // Query untuk update data di tabel tbl_penghuni
+                    string query = @"UPDATE tbl_penghuni SET 
+                                id_kamar = @id_kamar, 
+                                id_mahasiswa = @id_mahasiswa, 
+                                tingkat = @tingkat, 
+                                nama_penghuni = @nama_penghuni
+                             WHERE id_penghuni = @id_penghuni";
 
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
-                    adapter = new MySqlDataAdapter(perintah);
+
+                    // Menambahkan parameter untuk mencegah SQL Injection
+                    perintah.Parameters.AddWithValue("@id_kamar", txtIDKamar.Text);
+                    perintah.Parameters.AddWithValue("@id_mahasiswa", txtIDMahasiswa.Text);
+                    perintah.Parameters.AddWithValue("@tingkat", txtTingkat.Text);
+                    perintah.Parameters.AddWithValue("@nama_penghuni", txtNamapenghuni.Text);
+                    perintah.Parameters.AddWithValue("@id_penghuni", txtIDPenghuni.Text);
+
+                    // Eksekusi query update
                     int res = perintah.ExecuteNonQuery();
                     koneksi.Close();
+
+                    // Mengecek hasil eksekusi query
                     if (res == 1)
                     {
-                        MessageBox.Show("Update Data Suksess ...");
+                        MessageBox.Show("Update Data Sukses ...");
+
+                        // Perbarui data tipe kamar pada DataGridView setelah update
                         Form2_Load(null, null);
                     }
                     else
                     {
-                        MessageBox.Show("Gagal Update Data . . . ");
+                        MessageBox.Show("Gagal Update Data ...");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data Tidak lengkap !!");
+                    MessageBox.Show("Data Tidak Lengkap !!");
                 }
             }
             catch (Exception ex)
@@ -210,50 +259,102 @@ namespace Project__VISPRO
                 MessageBox.Show(ex.ToString());
             }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtIDPenghuni.Text != "")
+                string query = "";
+
+                // Tentukan query berdasarkan parameter yang diisi
+                if (!string.IsNullOrEmpty(txtIDPenghuni.Text))
                 {
-                    query = string.Format("select * from tbl_penghuni where id_penghuni = '{0}'", txtIDPenghuni.Text);
-                    ds.Clear();
-                    koneksi.Open();
-                    perintah = new MySqlCommand(query, koneksi);
-                    adapter = new MySqlDataAdapter(perintah);
-                    perintah.ExecuteNonQuery();
-                    adapter.Fill(ds);
-                    koneksi.Close();
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        foreach (DataRow kolom in ds.Tables[0].Rows)
-                        {
-                            txtIDPenghuni.Text = kolom["id_penghuni"].ToString();
-                            txtIDKamar.Text = kolom["id_kamar"].ToString();
-                            txtIDMahasiswa.Text = kolom["id_mahasiswa"].ToString();
-                            txtTingkat.Text = kolom["tingkat"].ToString();
-                            txtNamapenghuni.Text = kolom["nama_penghuni"].ToString();
-
-                        }
-                        
-                        dataGridView1.DataSource = ds.Tables[0];
-                        btnSave.Enabled = true;
-                        btnUpdate.Enabled = true;
-                        btnDelete.Enabled = true;
-                        btnClear.Enabled = true;
-                        btnClear.Enabled = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data Tidak Ada !!");
-                        Form2_Load(null, null);
-                    }
-
+                    query = @"SELECT p.*, k.tipe_kamar 
+                      FROM tbl_penghuni p
+                      INNER JOIN tbl_kamar k ON p.id_kamar = k.id_kamar
+                      WHERE p.id_penghuni = @id_penghuni";
+                }
+                else if (!string.IsNullOrEmpty(txtIDKamar.Text))
+                {
+                    query = @"SELECT p.*, k.tipe_kamar 
+                      FROM tbl_penghuni p
+                      INNER JOIN tbl_kamar k ON p.id_kamar = k.id_kamar
+                      WHERE p.id_kamar = @id_kamar";
+                }
+                else if (!string.IsNullOrEmpty(txtIDMahasiswa.Text))
+                {
+                    query = @"SELECT p.*, k.tipe_kamar 
+                      FROM tbl_penghuni p
+                      INNER JOIN tbl_kamar k ON p.id_kamar = k.id_kamar
+                      WHERE p.id_mahasiswa = @id_mahasiswa";
+                }
+                else if (!string.IsNullOrEmpty(txtTingkat.Text))
+                {
+                    query = @"SELECT p.*, k.tipe_kamar 
+                      FROM tbl_penghuni p
+                      INNER JOIN tbl_kamar k ON p.id_kamar = k.id_kamar
+                      WHERE p.tingkat = @tingkat";
+                }
+                else if (!string.IsNullOrEmpty(txtNamapenghuni.Text))
+                {
+                    query = @"SELECT p.*, k.tipe_kamar 
+                      FROM tbl_penghuni p
+                      INNER JOIN tbl_kamar k ON p.id_kamar = k.id_kamar
+                      WHERE p.nama_penghuni = @nama_penghuni";
+                }
+                else if (cmbType.SelectedIndex != -1) // Check if a value is selected in the ComboBox
+                {
+                    query = @"SELECT p.*, k.tipe_kamar 
+                      FROM tbl_penghuni p
+                      INNER JOIN tbl_kamar k ON p.id_kamar = k.id_kamar
+                      WHERE k.tipe_kamar = @tipe_kamar";
                 }
                 else
                 {
-                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
+                    MessageBox.Show("Data yang Anda pilih tidak ada!!");
+                    return;
+                }
+
+                // Menjalankan pencarian dengan query dinamis
+                ds.Clear();
+                koneksi.Open();
+                perintah = new MySqlCommand(query, koneksi);
+
+                // Menambahkan parameter ke query untuk mencegah SQL Injection
+                if (!string.IsNullOrEmpty(txtIDPenghuni.Text)) perintah.Parameters.AddWithValue("@id_penghuni", txtIDPenghuni.Text);
+                if (!string.IsNullOrEmpty(txtIDKamar.Text)) perintah.Parameters.AddWithValue("@id_kamar", txtIDKamar.Text);
+                if (!string.IsNullOrEmpty(txtIDMahasiswa.Text)) perintah.Parameters.AddWithValue("@id_mahasiswa", txtIDMahasiswa.Text);
+                if (!string.IsNullOrEmpty(txtTingkat.Text)) perintah.Parameters.AddWithValue("@tingkat", txtTingkat.Text);
+                if (!string.IsNullOrEmpty(txtNamapenghuni.Text)) perintah.Parameters.AddWithValue("@nama_penghuni", txtNamapenghuni.Text);
+                if (cmbType.SelectedIndex != -1) perintah.Parameters.AddWithValue("@tipe_kamar", cmbType.SelectedItem.ToString()); // Use selected item from ComboBox
+
+                adapter = new MySqlDataAdapter(perintah);
+                perintah.ExecuteNonQuery();
+                adapter.Fill(ds);
+                koneksi.Close();
+
+                // Cek apakah data ditemukan dan update tampilan
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    DataRow kolom = ds.Tables[0].Rows[0]; // Ambil hanya baris pertama, karena id biasanya unik
+                    txtIDPenghuni.Text = kolom["id_penghuni"].ToString();
+                    txtIDKamar.Text = kolom["id_kamar"].ToString();
+                    txtIDMahasiswa.Text = kolom["id_mahasiswa"].ToString();
+                    txtTingkat.Text = kolom["tingkat"].ToString();
+                    txtNamapenghuni.Text = kolom["nama_penghuni"].ToString();
+                    cmbType.SelectedItem = kolom["tipe_kamar"].ToString(); // Set selected item in ComboBox
+
+                    dataGridView1.DataSource = ds.Tables[0];
+                    btnSave.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnClear.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Data Tidak Ada !!");
+                    Form2_Load(null, null); // Memuat ulang data jika tidak ada hasil
                 }
             }
             catch (Exception ex)
@@ -262,42 +363,55 @@ namespace Project__VISPRO
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+
+    private void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtIDPenghuni.Text != "")
+                // Pastikan ID Penghuni telah diisi
+                if (!string.IsNullOrEmpty(txtIDPenghuni.Text))
                 {
+                    // Konfirmasi penghapusan data
                     if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("Delete from tbl_penghuni where id_penghuni = '{0}'", txtIDPenghuni.Text);
-                        ds.Clear();
+                        // Membuat query untuk menghapus hanya data tingkat, nama mahasiswa, dan id mahasiswa
+                        query = "UPDATE tbl_penghuni SET tingkat = NULL, nama_penghuni = NULL, id_mahasiswa = NULL WHERE id_penghuni = @id_penghuni";
+
+                        // Menyiapkan koneksi dan perintah
                         koneksi.Open();
                         perintah = new MySqlCommand(query, koneksi);
-                        adapter = new MySqlDataAdapter(perintah);
+                        perintah.Parameters.AddWithValue("@id_penghuni", txtIDPenghuni.Text);
+
+                        // Eksekusi query
                         int res = perintah.ExecuteNonQuery();
                         koneksi.Close();
+
+                        // Menampilkan hasil eksekusi
                         if (res == 1)
                         {
-                            MessageBox.Show("Delete Data Suksess ...");
+                            MessageBox.Show("Data Terhapus Suksess (Tingkat, Nama Mahasiswa, ID Mahasiswa) ...");
+                            Form2_Load(null, null); // Memuat ulang data setelah penghapusan
                         }
                         else
                         {
-                            MessageBox.Show("Gagal Delete data");
+                            MessageBox.Show("Gagal Menghapus Data");
                         }
                     }
-                    Form2_Load(null, null);
                 }
                 else
                 {
+                    // Menampilkan pesan jika ID Penghuni tidak diisi
                     MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
                 }
             }
             catch (Exception ex)
             {
+                // Menangkap dan menampilkan error jika terjadi exception
                 MessageBox.Show(ex.ToString());
             }
         }
+
+
 
         private void btnCarikamar_Click(object sender, EventArgs e)
         {
@@ -373,7 +487,6 @@ namespace Project__VISPRO
                             txtIDMahasiswa.Text = kolom["id_mahasiswa"].ToString();
                             txtTingkat.Text = kolom["tingkat"].ToString();
                             txtNamapenghuni.Text = kolom["nama_penghuni"].ToString();
-
                         }
 
                         dataGridView1.DataSource = ds.Tables[0];
@@ -399,6 +512,17 @@ namespace Project__VISPRO
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            FrmPengguna frmPengguna = new FrmPengguna();
+            frmPengguna.ShowDialog();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

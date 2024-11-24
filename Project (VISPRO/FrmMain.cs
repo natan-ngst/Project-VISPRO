@@ -33,8 +33,8 @@ namespace Project__VISPRO
 
         private void btnDorm_Click_1(object sender, EventArgs e)
         {
-            FrmKamar frmKamar = new FrmKamar();
-            frmKamar.Show();
+            FormDorm formDorm = new FormDorm();
+            formDorm.Show();
             this.Hide();
         }
 
@@ -62,8 +62,8 @@ namespace Project__VISPRO
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            Form3 form3= new Form3();
-            form3.Show();
+            FormInfo formInfo= new FormInfo();
+            formInfo.Show();
             this.Hide();
         }
     }

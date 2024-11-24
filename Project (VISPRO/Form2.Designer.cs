@@ -52,9 +52,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtType = new System.Windows.Forms.TextBox();
-            this.btnCarikamar = new System.Windows.Forms.Button();
-            this.btnCarinama = new System.Windows.Forms.Button();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(299, 200);
+            this.label1.Location = new System.Drawing.Point(299, 151);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 20);
             this.label1.TabIndex = 0;
@@ -70,14 +69,14 @@
             // 
             // txtIDPenghuni
             // 
-            this.txtIDPenghuni.Location = new System.Drawing.Point(481, 200);
+            this.txtIDPenghuni.Location = new System.Drawing.Point(481, 148);
             this.txtIDPenghuni.Name = "txtIDPenghuni";
             this.txtIDPenghuni.Size = new System.Drawing.Size(136, 26);
             this.txtIDPenghuni.TabIndex = 2;
             // 
             // txtIDKamar
             // 
-            this.txtIDKamar.Location = new System.Drawing.Point(481, 249);
+            this.txtIDKamar.Location = new System.Drawing.Point(481, 197);
             this.txtIDKamar.Name = "txtIDKamar";
             this.txtIDKamar.Size = new System.Drawing.Size(136, 26);
             this.txtIDKamar.TabIndex = 3;
@@ -85,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(299, 252);
+            this.label2.Location = new System.Drawing.Point(299, 200);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 20);
             this.label2.TabIndex = 9;
@@ -94,7 +93,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(787, 151);
+            this.label4.Location = new System.Drawing.Point(299, 252);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(109, 20);
             this.label4.TabIndex = 11;
@@ -103,7 +102,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(789, 200);
+            this.label5.Location = new System.Drawing.Point(787, 151);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 12;
@@ -111,14 +110,14 @@
             // 
             // txtIDMahasiswa
             // 
-            this.txtIDMahasiswa.Location = new System.Drawing.Point(1035, 148);
+            this.txtIDMahasiswa.Location = new System.Drawing.Point(481, 252);
             this.txtIDMahasiswa.Name = "txtIDMahasiswa";
             this.txtIDMahasiswa.Size = new System.Drawing.Size(136, 26);
             this.txtIDMahasiswa.TabIndex = 14;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(303, 372);
+            this.btnSave.Location = new System.Drawing.Point(327, 345);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(122, 32);
             this.btnSave.TabIndex = 6;
@@ -199,7 +198,7 @@
             // 
             // txtTingkat
             // 
-            this.txtTingkat.Location = new System.Drawing.Point(1035, 197);
+            this.txtTingkat.Location = new System.Drawing.Point(1035, 151);
             this.txtTingkat.Name = "txtTingkat";
             this.txtTingkat.Size = new System.Drawing.Size(136, 26);
             this.txtTingkat.TabIndex = 55;
@@ -207,7 +206,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(787, 252);
+            this.label3.Location = new System.Drawing.Point(787, 200);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 20);
             this.label3.TabIndex = 56;
@@ -215,16 +214,16 @@
             // 
             // txtNamapenghuni
             // 
-            this.txtNamapenghuni.Location = new System.Drawing.Point(1035, 249);
+            this.txtNamapenghuni.Location = new System.Drawing.Point(1035, 200);
             this.txtNamapenghuni.Name = "txtNamapenghuni";
             this.txtNamapenghuni.Size = new System.Drawing.Size(136, 26);
             this.txtNamapenghuni.TabIndex = 57;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(1026, 315);
+            this.btnClear.Location = new System.Drawing.Point(791, 315);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(145, 89);
+            this.btnClear.Size = new System.Drawing.Size(122, 32);
             this.btnClear.TabIndex = 58;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -253,67 +252,62 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(303, 461);
+            this.dataGridView1.Location = new System.Drawing.Point(303, 431);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(868, 191);
+            this.dataGridView1.Size = new System.Drawing.Size(868, 221);
             this.dataGridView1.TabIndex = 61;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(303, 314);
+            this.button1.Location = new System.Drawing.Point(549, 315);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 32);
             this.button1.TabIndex = 62;
-            this.button1.Text = "Cari Penghuni";
+            this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(299, 151);
+            this.label6.Location = new System.Drawing.Point(789, 252);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 20);
             this.label6.TabIndex = 63;
             this.label6.Text = "Type";
             // 
-            // txtType
+            // cmbType
             // 
-            this.txtType.Location = new System.Drawing.Point(481, 148);
-            this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(136, 26);
-            this.txtType.TabIndex = 64;
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Items.AddRange(new object[] {
+            "Crystal 1",
+            "Crystal 2",
+            "Crystal 3"});
+            this.cmbType.Location = new System.Drawing.Point(1035, 252);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(136, 28);
+            this.cmbType.TabIndex = 64;
             // 
-            // btnCarikamar
+            // button2
             // 
-            this.btnCarikamar.Location = new System.Drawing.Point(549, 315);
-            this.btnCarikamar.Name = "btnCarikamar";
-            this.btnCarikamar.Size = new System.Drawing.Size(122, 32);
-            this.btnCarikamar.TabIndex = 65;
-            this.btnCarikamar.Text = "Cari Kamar";
-            this.btnCarikamar.UseVisualStyleBackColor = true;
-            this.btnCarikamar.Click += new System.EventHandler(this.btnCarikamar_Click);
-            // 
-            // btnCarinama
-            // 
-            this.btnCarinama.Location = new System.Drawing.Point(791, 315);
-            this.btnCarinama.Name = "btnCarinama";
-            this.btnCarinama.Size = new System.Drawing.Size(122, 32);
-            this.btnCarinama.TabIndex = 66;
-            this.btnCarinama.Text = "Cari Nama";
-            this.btnCarinama.UseVisualStyleBackColor = true;
-            this.btnCarinama.Click += new System.EventHandler(this.btnCarinama_Click);
+            this.button2.Location = new System.Drawing.Point(1035, 345);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(116, 32);
+            this.button2.TabIndex = 65;
+            this.button2.Text = "Print";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1258, 664);
-            this.Controls.Add(this.btnCarinama);
-            this.Controls.Add(this.btnCarikamar);
-            this.Controls.Add(this.txtType);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.cmbType);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -338,6 +332,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBooking";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -372,8 +367,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtType;
-        private System.Windows.Forms.Button btnCarikamar;
-        private System.Windows.Forms.Button btnCarinama;
+        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Button button2;
     }
 }
