@@ -521,8 +521,8 @@ namespace Project__VISPRO
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            FrmPengguna frmPengguna = new FrmPengguna();
-            frmPengguna.ShowDialog();
+            Frmpenggguna frmpenggguna = new Frmpenggguna();
+            frmpenggguna.ShowDialog();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
